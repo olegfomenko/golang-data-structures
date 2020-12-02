@@ -1,7 +1,10 @@
 package treap
 
 type Node struct {
-	x, y, sz    int
+	// value, priority, subtree size
+	x, y, sz int
+
+	// son's nodes
 	left, right *Node
 }
 
@@ -35,7 +38,7 @@ func (node *Node) update() {
 	}
 }
 
-// Merge current tree and tree with bigger values
+// Merge current tree and tree with bigger values according to nodes priority
 func (t1 *Node) merge(t2 *Node) *Node {
 	if t1 == nil {
 		return t2
@@ -76,6 +79,7 @@ func (t *Node) split(k int) (*Node, *Node) {
 	}
 }
 
+// Getting k-th maximum value in treap
 func (t *Node) get(k int) int {
 	sz := t.right.size() + 1
 
@@ -90,6 +94,7 @@ func (t *Node) get(k int) int {
 	}
 }
 
+// Deleting value x from treap
 func (t *Node) delete(x int) *Node {
 	if t == nil {
 		return nil

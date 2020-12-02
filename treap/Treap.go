@@ -1,6 +1,7 @@
 package treap
 
 type Treap struct {
+	// Treap root node (with highest priority)
 	root *Node
 }
 
@@ -12,7 +13,8 @@ type ITreap interface {
 	get(k int) int
 }
 
-// Inserting pair (x, y) in treap, where x is a value and y is a priority
+// Inserting pair (x, y) in treap,
+// where x is a value and y is a priority
 func (t *Treap) Insert(x int, y int) {
 	node := &Node{x, y, 1, nil, nil}
 
