@@ -1,7 +1,5 @@
-/**
-E-Olymp problem:
-https://www.e-olymp.com/uk/problems/687
-*/
+// E-Olymp problem:
+// https://www.e-olymp.com/uk/problems/687
 
 package main
 

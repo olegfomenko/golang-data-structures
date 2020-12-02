@@ -19,6 +19,7 @@ type INode interface {
 	delete(x int) *Node
 }
 
+// Get size of Node
 func (node *Node) size() int {
 	if node == nil {
 		return 0
@@ -27,12 +28,14 @@ func (node *Node) size() int {
 	}
 }
 
+// Update node size after sons reassignment
 func (node *Node) update() {
 	if node != nil {
 		node.sz = 1 + node.left.size() + node.right.size()
 	}
 }
 
+// Merge current tree and tree with bigger values
 func (t1 *Node) merge(t2 *Node) *Node {
 	if t1 == nil {
 		return t2
@@ -53,6 +56,8 @@ func (t1 *Node) merge(t2 *Node) *Node {
 	}
 }
 
+// Splitting tree by key.
+// Values that less then key will be stored int left answer
 func (t *Node) split(k int) (*Node, *Node) {
 	if t == nil {
 		return nil, nil

@@ -12,6 +12,7 @@ type ITreap interface {
 	get(k int) int
 }
 
+// Inserting pair (x, y) in treap, where x is a value and y is a priority
 func (t *Treap) Insert(x int, y int) {
 	node := &Node{x, y, 1, nil, nil}
 
@@ -24,10 +25,12 @@ func (t *Treap) Insert(x int, y int) {
 	}
 }
 
+// Deleting x from treap
 func (t *Treap) Delete(x int) {
 	t.root = t.root.delete(x)
 }
 
+// Get k-th max value
 func (t *Treap) Get(k int) int {
 	return t.root.get(k)
 }
