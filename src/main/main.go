@@ -24,7 +24,7 @@ func main() {
 	var n int
 	fmt.Fscan(in, &n)
 
-	var set treap.Treap
+	var set = treap.GetInstance()
 
 	for i := 0; i < n; i++ {
 		var t, val int
