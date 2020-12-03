@@ -53,11 +53,11 @@ func update(t []Value, v int, tl int, tr int, pos int, value Value) {
 	}
 }
 
-func getEmpty(size int) []Value {
+func getEmpty(size int, def Value) []Value {
 	values := make([]Value, 4*size+4)
 
 	for i := 0; i < 4*size+4; i++ {
-		values = append(values, IntValue(0))
+		values = append(values, def)
 	}
 
 	return values

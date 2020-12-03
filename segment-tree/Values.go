@@ -41,14 +41,14 @@ func (cur StringValue) Add(value Value) Value {
 	}
 }
 
-func GetInt(val int) Value {
+func GetIntValue(val int) Value {
 	return IntValue(val)
 }
 
-func GetFloat(val float64) Value {
+func GetFloatValue(val float64) Value {
 	return FloatValue(val)
 }
 
-func GetString(val string) Value {
+func GetStringValue(val string) Value {
 	return StringValue(val)
 }

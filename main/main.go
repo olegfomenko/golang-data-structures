@@ -6,14 +6,6 @@ import (
 )
 
 func main() {
-	value := segment_tree.GetInt(1)
-	value = value.Add(segment_tree.GetInt(2))
-	fmt.Println(value)
-
-	str := segment_tree.GetString("abacaba")
-	str = str.Add(segment_tree.GetString("xxx"))
-	fmt.Println(str)
-
 	var tree segment_tree.Tree = segment_tree.GetIntTree(5)
 	tree.Assign(segment_tree.IntValue(1), 0)
 	tree.Assign(segment_tree.IntValue(14), 3)
