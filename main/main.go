@@ -1,38 +1,23 @@
-// E-Olymp problem:
-// https://www.e-olymp.com/uk/problems/687
-
 package main
 
 import (
-	"../treap"
-	"bufio"
+	"../segment-tree"
 	"fmt"
-	"math/rand"
-	"os"
-	"time"
 )
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
-	in := bufio.NewReader(os.Stdin)
+	value := segment_tree.GetInt(1)
+	value = value.Add(segment_tree.GetInt(2))
+	fmt.Println(value)
 
-	var n int
-	fmt.Fscan(in, &n)
+	str := segment_tree.GetString("abacaba")
+	str = str.Add(segment_tree.GetString("xxx"))
+	fmt.Println(str)
 
-	var treap treap.Treap
+	var tree segment_tree.Tree = segment_tree.GetIntTree(5)
+	tree.Assign(segment_tree.IntValue(1), 0)
+	tree.Assign(segment_tree.IntValue(14), 3)
+	tree.Assign(segment_tree.IntValue(5), 4)
 
-	for i := 0; i < n; i++ {
-		var t, val int
-		fmt.Fscan(in, &t, &val)
-
-		switch t {
-		case 1:
-			treap.Insert(val, rand.Int())
-		case -1:
-			treap.Delete(val)
-		case 0:
-			fmt.Println(treap.Get(val))
-		}
-	}
-
+	fmt.Println(tree.Get(0, 4), tree.Get(0, 0), tree.Get(3, 4))
 }
