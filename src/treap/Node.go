@@ -12,20 +12,26 @@ type node struct {
 }
 
 type treapNode interface {
+	// Get size of Node
 	size() int
 
+	// Update node size after sons reassignment
 	update()
 
+	// Merge current tree and tree with bigger values according to nodes priority
 	merge(t *node) *node
 
+	// Splitting tree by key.
+	// Values that less then key will be stored int left answer
 	split(k int) (*node, *node)
 
+	// Getting k-th maximum value in treap
 	get(k int) int
 
+	// Deleting value x from treap
 	delete(x int) *node
 }
 
-// Get size of Node
 func (node *node) size() int {
 	if node == nil {
 		return 0
@@ -34,14 +40,12 @@ func (node *node) size() int {
 	}
 }
 
-// Update node size after sons reassignment
 func (node *node) update() {
 	if node != nil {
 		node.sz = 1 + node.left.size() + node.right.size()
 	}
 }
 
-// Merge current tree and tree with bigger values according to nodes priority
 func (t1 *node) merge(t2 *node) *node {
 	if t1 == nil {
 		return t2
@@ -62,8 +66,6 @@ func (t1 *node) merge(t2 *node) *node {
 	}
 }
 
-// Splitting tree by key.
-// Values that less then key will be stored int left answer
 func (t *node) split(k Value) (*node, *node) {
 	if t == nil {
 		return nil, nil
@@ -82,7 +84,6 @@ func (t *node) split(k Value) (*node, *node) {
 	}
 }
 
-// Getting k-th maximum value in treap
 func (t *node) get(k int) Value {
 	sz := t.right.size() + 1
 
@@ -97,7 +98,6 @@ func (t *node) get(k int) Value {
 	}
 }
 
-// Deleting value x from treap
 func (t *node) delete(x Value) *node {
 	if t == nil {
 		return nil
