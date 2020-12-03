@@ -22,6 +22,6 @@ func (tree segmentTree) Assign(value Value, pos int) {
 	update(tree.t, 1, 0, tree.size-1, pos, value)
 }
 
-func GetIntTree(size int) Tree    { return segmentTree{getEmpty(size, IntValue(0)), size} }
-func GetStringTree(size int) Tree { return segmentTree{getEmpty(size, StringValue("")), size} }
-func GetFloatTree(size int) Tree  { return segmentTree{getEmpty(size, FloatValue(0)), size} }
+func GetTree(size int, defaultValue Value) Tree {
+	return segmentTree{getEmpty(size, defaultValue), size}
+}

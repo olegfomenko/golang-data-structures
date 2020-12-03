@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	var tree segment_tree.Tree = segment_tree.GetIntTree(5)
+	var tree segment_tree.Tree = segment_tree.GetTree(5, segment_tree.IntValue(0))
 	tree.Assign(segment_tree.IntValue(1), 0)
 	tree.Assign(segment_tree.IntValue(14), 3)
 	tree.Assign(segment_tree.IntValue(5), 4)
