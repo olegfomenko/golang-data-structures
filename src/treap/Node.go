@@ -1,29 +1,32 @@
 package treap
 
-type Node struct {
-	// value, priority, subtree size
-	x, y, sz int
+type node struct {
+	// Node value and priority
+	x, y Value
+
+	// size of subtree with current node as a root
+	sz int
 
 	// son's nodes
-	left, right *Node
+	left, right *node
 }
 
-type INode interface {
+type treapNode interface {
 	size() int
 
 	update()
 
-	merge(t *Node) *Node
+	merge(t *node) *node
 
-	split(k int) (*Node, *Node)
+	split(k int) (*node, *node)
 
 	get(k int) int
 
-	delete(x int) *Node
+	delete(x int) *node
 }
 
 // Get size of Node
-func (node *Node) size() int {
+func (node *node) size() int {
 	if node == nil {
 		return 0
 	} else {
@@ -32,14 +35,14 @@ func (node *Node) size() int {
 }
 
 // Update node size after sons reassignment
-func (node *Node) update() {
+func (node *node) update() {
 	if node != nil {
 		node.sz = 1 + node.left.size() + node.right.size()
 	}
 }
 
 // Merge current tree and tree with bigger values according to nodes priority
-func (t1 *Node) merge(t2 *Node) *Node {
+func (t1 *node) merge(t2 *node) *node {
 	if t1 == nil {
 		return t2
 	}
@@ -48,7 +51,7 @@ func (t1 *Node) merge(t2 *Node) *Node {
 		return t1
 	}
 
-	if t1.y < t2.y {
+	if t1.y.Less(t2.y) {
 		t2.left = t1.merge(t2.left)
 		t2.update()
 		return t2
@@ -61,26 +64,26 @@ func (t1 *Node) merge(t2 *Node) *Node {
 
 // Splitting tree by key.
 // Values that less then key will be stored int left answer
-func (t *Node) split(k int) (*Node, *Node) {
+func (t *node) split(k Value) (*node, *node) {
 	if t == nil {
 		return nil, nil
 	}
 
-	if k <= t.x {
-		t1, t2 := t.left.split(k)
-		t.left = t2
-		t.update()
-		return t1, t
-	} else {
+	if t.x.Less(k) {
 		t1, t2 := t.right.split(k)
 		t.right = t1
 		t.update()
 		return t, t2
+	} else {
+		t1, t2 := t.left.split(k)
+		t.left = t2
+		t.update()
+		return t1, t
 	}
 }
 
 // Getting k-th maximum value in treap
-func (t *Node) get(k int) int {
+func (t *node) get(k int) Value {
 	sz := t.right.size() + 1
 
 	if sz == k {
@@ -95,16 +98,16 @@ func (t *Node) get(k int) int {
 }
 
 // Deleting value x from treap
-func (t *Node) delete(x int) *Node {
+func (t *node) delete(x Value) *node {
 	if t == nil {
 		return nil
 	}
 
-	if t.x == x {
+	if t.x.Equals(x) {
 		return t.left.merge(t.right)
 	}
 
-	if x < t.x {
+	if x.Less(t.x) {
 		t.left = t.left.delete(x)
 	} else {
 		t.right = t.right.delete(x)

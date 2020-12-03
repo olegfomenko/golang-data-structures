@@ -40,15 +40,3 @@ func (cur StringValue) Add(value Value) Value {
 		return cur + value.(StringValue)
 	}
 }
-
-func GetIntValue(val int) Value {
-	return IntValue(val)
-}
-
-func GetFloatValue(val float64) Value {
-	return FloatValue(val)
-}
-
-func GetStringValue(val string) Value {
-	return StringValue(val)
-}

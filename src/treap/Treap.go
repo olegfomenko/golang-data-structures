@@ -2,21 +2,21 @@ package treap
 
 type Treap struct {
 	// Treap root node (with highest priority)
-	root *Node
+	root *node
 }
 
-type ITreap interface {
-	insert(x int, y int)
+type treap interface {
+	insert(x Value, y Value)
 
-	delete(x int)
+	delete(x Value)
 
-	get(k int) int
+	get(k int) Value
 }
 
 // Inserting pair (x, y) in treap,
 // where x is a value and y is a priority
-func (t *Treap) Insert(x int, y int) {
-	node := &Node{x, y, 1, nil, nil}
+func (t *Treap) Insert(x Value, y Value) {
+	node := &node{x, y, 1, nil, nil}
 
 	if t.root == nil {
 		t.root = node
@@ -28,11 +28,11 @@ func (t *Treap) Insert(x int, y int) {
 }
 
 // Deleting x from treap
-func (t *Treap) Delete(x int) {
+func (t *Treap) Delete(x Value) {
 	t.root = t.root.delete(x)
 }
 
 // Get k-th max value
-func (t *Treap) Get(k int) int {
+func (t *Treap) Get(k int) Value {
 	return t.root.get(k)
 }
