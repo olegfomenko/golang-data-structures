@@ -16,8 +16,8 @@ func max(x int, y int) int {
 	}
 }
 
-func getEmpty(size int, def Value) []Value {
-	values := make([]Value, 4*size+4)
+func getEmpty(size int, def value) []value {
+	values := make([]value, 4*size+4)
 
 	for i := 0; i < 4*size+4; i++ {
 		values = append(values, def)

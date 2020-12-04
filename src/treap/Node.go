@@ -2,7 +2,7 @@ package treap
 
 type node struct {
 	// Node value and priority
-	x, y Value
+	x, y value
 
 	// size of subtree with current node as a root
 	sz int
@@ -66,7 +66,7 @@ func (t1 *node) merge(t2 *node) *node {
 	}
 }
 
-func (t *node) split(k Value) (*node, *node) {
+func (t *node) split(k value) (*node, *node) {
 	if t == nil {
 		return nil, nil
 	}
@@ -84,7 +84,7 @@ func (t *node) split(k Value) (*node, *node) {
 	}
 }
 
-func (t *node) get(k int) Value {
+func (t *node) get(k int) value {
 	sz := t.right.size() + 1
 
 	if sz == k {
@@ -98,7 +98,7 @@ func (t *node) get(k int) Value {
 	}
 }
 
-func (t *node) delete(x Value) *node {
+func (t *node) delete(x value) *node {
 	if t == nil {
 		return nil
 	}

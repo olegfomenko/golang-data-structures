@@ -3,32 +3,32 @@ package segment_tree
 type Tree interface {
 	// Get sum on section [l; r]
 	// Attention: this struct uses zero-indexing
-	Get(l int, r int) Value
+	Get(l int, r int) value
 
 	// Change value on certain pos
-	Assign(value Value, pos int)
+	Assign(value value, pos int)
 
 	// Inner get function that contains main segment tree get-on-segment logic
-	get(v int, tl int, tr int, l int, r int) Value
+	get(v int, tl int, tr int, l int, r int) value
 
 	// Inner update function that contains main segment tree re-assign logic
-	update(v int, tl int, tr int, pos int, value Value)
+	update(v int, tl int, tr int, pos int, value value)
 }
 
 type segmentTree struct {
-	t    []Value
+	t    []value
 	size int
 }
 
-func (tree segmentTree) Get(l int, r int) Value {
+func (tree segmentTree) Get(l int, r int) value {
 	return tree.get(1, 0, tree.size-1, l, r)
 }
 
-func (tree segmentTree) Assign(value Value, pos int) {
+func (tree segmentTree) Assign(value value, pos int) {
 	tree.update(1, 0, tree.size-1, pos, value)
 }
 
-func (tree segmentTree) get(v int, tl int, tr int, l int, r int) Value {
+func (tree segmentTree) get(v int, tl int, tr int, l int, r int) value {
 	if l > r {
 		return nil
 	}
@@ -49,7 +49,7 @@ func (tree segmentTree) get(v int, tl int, tr int, l int, r int) Value {
 	}
 }
 
-func (tree segmentTree) update(v int, tl int, tr int, pos int, value Value) {
+func (tree segmentTree) update(v int, tl int, tr int, pos int, value value) {
 	if tl == tr {
 		tree.t[v] = value
 	} else {
@@ -65,6 +65,6 @@ func (tree segmentTree) update(v int, tl int, tr int, pos int, value Value) {
 	}
 }
 
-func GetTree(size int, defaultValue Value) Tree {
+func GetTree(size int, defaultValue value) Tree {
 	return segmentTree{getEmpty(size, defaultValue), size}
 }

@@ -3,13 +3,13 @@ package treap
 type Treap interface {
 	// Inserting pair (x, y) in treap,
 	// where x is a value and y is a priority
-	Insert(x Value, y Value)
+	Insert(x value, y value)
 
 	// Delete value from set
-	Delete(x Value)
+	Delete(x value)
 
 	// Get k-th maximum value
-	Get(k int) Value
+	Get(k int) value
 }
 
 type treap struct {
@@ -17,7 +17,7 @@ type treap struct {
 	root *node
 }
 
-func (t *treap) Insert(x Value, y Value) {
+func (t *treap) Insert(x value, y value) {
 	node := &node{x, y, 1, nil, nil}
 
 	if t.root == nil {
@@ -29,11 +29,11 @@ func (t *treap) Insert(x Value, y Value) {
 	}
 }
 
-func (t *treap) Delete(x Value) {
+func (t *treap) Delete(x value) {
 	t.root = t.root.delete(x)
 }
 
-func (t *treap) Get(k int) Value {
+func (t *treap) Get(k int) value {
 	return t.root.get(k)
 }
 
