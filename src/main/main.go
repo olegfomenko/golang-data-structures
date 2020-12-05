@@ -32,7 +32,7 @@ func main() {
 
 		switch t {
 		case 1:
-			set.Insert(treap.IntValue(val), treap.IntValue(rand.Int()))
+			set.Insert(treap.IntValue(val))
 		case -1:
 			set.Delete(treap.IntValue(val))
 		case 0:

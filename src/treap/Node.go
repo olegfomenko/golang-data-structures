@@ -29,7 +29,7 @@ type treapNode interface {
 	get(k int) int
 
 	// Deleting value x from treap
-	delete(x int) *node
+	delete(x value) *node
 }
 
 func (node *node) size() int {

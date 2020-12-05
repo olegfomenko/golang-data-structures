@@ -1,9 +1,11 @@
 package treap
 
+import "math/rand"
+
 type Treap interface {
 	// Inserting pair (x, y) in treap,
 	// where x is a value and y is a priority
-	Insert(x value, y value)
+	Insert(x value)
 
 	// Delete value from set
 	Delete(x value)
@@ -17,7 +19,8 @@ type treap struct {
 	root *node
 }
 
-func (t *treap) Insert(x value, y value) {
+func (t *treap) Insert(x value) {
+	y := IntValue(rand.Int())
 	node := &node{x, y, 1, nil, nil}
 
 	if t.root == nil {
