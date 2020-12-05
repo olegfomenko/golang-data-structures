@@ -14,6 +14,9 @@ type OrderedTreap interface {
 
 	// Swap two subarray
 	Swap(l1 int, r1 int, l2 int, r2 int)
+
+	// Delete subarray
+	DeleteSubarray(l1 int, l2 int)
 }
 
 type orderedTreap struct {
@@ -43,6 +46,12 @@ func (t *orderedTreap) GetById(id int) value {
 
 func (t *orderedTreap) Swap(l1 int, r1 int, l2 int, r2 int) {
 	if r1 < l2 || l1 > r2 {
+		// TODO
+	}
+}
+
+func (t *orderedTreap) DeleteSubarray(l1 int, r1 int) {
+	if l1 < r1 {
 		// TODO
 	}
 }
